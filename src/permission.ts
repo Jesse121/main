@@ -19,6 +19,12 @@ function getPageTitle(pageTitle: string) {
 	return `${settings.title}`;
 }
 
+(async () => {
+	if (store.getters.token && !store.getters.router) {
+		await store.dispatch("user/generateRoutes");
+	}
+})();
+
 // 全局前置守卫
 router.beforeEach(async (to, from, next) => {
 	NProgress.start();
@@ -26,8 +32,7 @@ router.beforeEach(async (to, from, next) => {
 	// set page title
 	document.title = getPageTitle(to.meta.title ?? "");
 
-	const token = store.getters.token;
-	if (!token) {
+	if (!store.getters.token) {
 		/* has no token*/
 		if (whiteList.includes(to.path)) {
 			// in the free login whitelist, go directly
@@ -43,7 +48,6 @@ router.beforeEach(async (to, from, next) => {
 	} else {
 		/* has token*/
 		// generate routes
-		await store.dispatch("user/generateRoutes");
 
 		if (to.path === "/login") {
 			next({ path: "/" });

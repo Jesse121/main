@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Layout from "@/layout/index.vue";
 
 import devPagesRouter from "./modules/__dev_pages";
+import home from "./modules/home";
 
 /**
   ConstantRoutes
@@ -57,15 +58,15 @@ export const constantRoutes: RouteRecordRaw[] = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes: Array<RouteRecordRaw> = [];
+export const asyncRoutes: Array<RouteRecordRaw> = [home];
 
 // 开发路由 - 仅本地开发环境可用
-let devRoutes: RouteRecordRaw[] = [...asyncRoutes];
+let devRoutes: RouteRecordRaw[] = [];
 
 export let devPagesRoutes: RouteRecordRaw[] = [];
 
 if (process.env.NODE_ENV === "development") {
-	devPagesRoutes = [devPagesRouter];
+	devPagesRoutes = [...asyncRoutes, devPagesRouter];
 	devRoutes = devRoutes.concat(devPagesRoutes);
 }
 
