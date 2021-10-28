@@ -11,37 +11,22 @@
 	</div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+import { IState } from "@/store";
 
 import { AppMain, Navbar, Sidebar, TagsView } from "./components";
 
-export default defineComponent({
-	name: "Layout",
-	components: {
-		Navbar,
-		Sidebar,
-		AppMain,
-		TagsView
-	},
-	computed: {
-		sidebar() {
-			return this.$store.state.app.sidebar;
-		},
-		classObj() {
-			return {
-				hideSidebar: !this.sidebar.opened,
-				openSidebar: this.sidebar.opened,
-				withoutAnimation: this.sidebar.withoutAnimation
-			};
-		}
-	}
-	// methods: {
-	// 	handleClickOutside() {
-	// 		this.$store.dispatch("app/closeSideBar", { withoutAnimation: false });
-	// 	}
-	// }
-});
+const store = useStore<IState>();
+
+const sidebarRef = computed(() => store.state.app.sidebar);
+const classObj = computed(() => ({
+	hideSidebar: !sidebarRef.value.opened,
+	openSidebar: sidebarRef.value.opened,
+	withoutAnimation: sidebarRef.value.withoutAnimation
+}));
 </script>
 
 <style lang="scss" scoped>
@@ -56,8 +41,8 @@ export default defineComponent({
 }
 .drawer-bg {
 	position: absolute;
-	z-index: 999;
 	top: 0;
+	z-index: 999;
 	width: 100%;
 	height: 100%;
 	background: #000;
@@ -66,9 +51,9 @@ export default defineComponent({
 
 .fixed-header {
 	position: fixed;
-	z-index: 9;
 	top: 0;
 	right: 0;
+	z-index: 9;
 	width: calc(100% - #{$sideBarWidth});
 	transition: width 0.28s;
 }

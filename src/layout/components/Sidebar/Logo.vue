@@ -1,5 +1,5 @@
 <template>
-	<div class="sidebar-logo-container" :class="{ collapse: collapse }">
+	<div :class="{ collapse: collapse }" class="sidebar-logo-container">
 		<transition name="sidebarLogoFade">
 			<router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
 				<img v-if="logo" :src="logo" class="sidebar-logo" />
@@ -17,28 +17,19 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 
+import logo from "@/assets/logo.png";
 import settings from "@/settings";
 
-export default defineComponent({
-	name: "SidebarLogo",
-	props: {
-		collapse: {
-			type: Boolean,
-			required: true
-		}
-	},
-	setup() {
-		const title = ref(settings.title);
-		return {
-			title,
-			logo: "/favicon.ico"
-			// logo: process.env.BASE_URL + "favicon.ico"
-		};
+defineProps({
+	collapse: {
+		type: Boolean,
+		required: true
 	}
 });
+const title = ref(settings.title);
 </script>
 
 <style lang="scss" scoped>
@@ -53,10 +44,10 @@ export default defineComponent({
 
 .sidebar-logo-container {
 	position: relative;
-	// background: $sidebarBg;
-	overflow: hidden;
 	width: 100%;
 	height: 65px;
+	// background: $sidebarBg;
+	overflow: hidden;
 	line-height: 65px;
 	&.collapse {
 		text-align: center;
@@ -67,10 +58,9 @@ export default defineComponent({
 		height: 100%;
 
 		& .sidebar-logo {
-			width: 32px;
-			height: 32px;
+			width: 48px;
 			// margin-top: 24px;
-			margin-right: 5px;
+			margin-right: 10px;
 			margin-left: 10px;
 		}
 

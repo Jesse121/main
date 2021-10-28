@@ -7,8 +7,8 @@
 				:collapse="isCollapse"
 				:background-color="variables.sidebarBg"
 				:text-color="variables.menuText"
+				unique-opened
 				:active-text-color="variables.menuActiveText"
-				:unique-opened="true"
 				:collapse-transition="false"
 				mode="vertical"
 			>
@@ -18,10 +18,10 @@
 	</div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
+<script setup lang="ts">
+import { computed } from "vue";
 
-import { asyncRoutes } from "@/router";
+import router, { asyncRoutes } from "@/router";
 import store from "@/store";
 import { getConfigRoutes } from "@/store/modules/user";
 import variables from "@/styles/variables.scss";
@@ -29,40 +29,50 @@ import variables from "@/styles/variables.scss";
 import Logo from "./Logo.vue";
 import SidebarItem from "./SidebarItem.vue";
 
-export default {
-	name: "Sidebar",
-	components: { SidebarItem, Logo },
-	computed: {
-		...mapGetters(["sidebar"]),
-		routes() {
-			let routes = [];
-			if (store.getters.routes) {
-				routes = getConfigRoutes(asyncRoutes, store.getters.routes, false);
-			} else {
-				routes = this.$router.options.routes;
-			}
+const { sidebar } = store.getters;
 
-			return routes;
-		},
-		activeMenu() {
-			const route = this.$route;
-			const { meta, matched } = route;
-			// if set path, the sidebar will highlight the path you set
-			if (meta.activeMenu) {
-				return meta.activeMenu;
-			}
-			// return matched.length > 2 ? matched[1].path : path;
-			return matched[0].path;
-		},
-		showLogo() {
-			return true;
-		},
-		variables() {
-			return variables;
-		},
-		isCollapse() {
-			return !this.sidebar.opened;
-		}
+const showLogo = true;
+// console.log(variables);
+
+const routes = computed(() => {
+	let routes = [];
+	if (store.getters.routes) {
+		routes = getConfigRoutes(asyncRoutes, store.getters.routes, false);
+	} else {
+		// TODO 解决热跟新路由
+		routes = router.options.routes;
 	}
-};
+	return routes;
+});
+
+const isCollapse = computed(() => !sidebar.opened);
+
+const activeMenu = computed(() => {
+	const route = router.currentRoute.value;
+	const { meta, matched, path } = route;
+	// if set path, the sidebar will highlight the path you set
+	if (meta.activeMenu) {
+		return meta.activeMenu;
+	}
+	return matched.length > 2 ? matched[1].path : path;
+});
+
+// export default {
+// 	name: "Sidebar",
+// 	components: { SidebarItem, Logo },
+// 	computed: {
+// 		...mapGetters(["sidebar"]),
+// 		routes() {
+
+// 		showLogo() {
+// 			return true;
+// 		},
+// 		variables() {
+// 			return variables;
+// 		},
+// 		isCollapse() {
+// 			return ;
+// 		}
+// 	}
+// };
 </script>

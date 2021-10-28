@@ -4,7 +4,6 @@ import "normalize.css/normalize.css";
 
 import dayjs from "dayjs";
 import ElementPlus, { ElLoading, ElMessage, ElMessageBox, ElNotification } from "element-plus";
-import locale from "element-plus/lib/locale/lang/zh-cn";
 import { createApp } from "vue";
 import { Store } from "vuex";
 
@@ -43,7 +42,7 @@ declare module "vue-router" {
 const app = createApp(App);
 app.config.globalProperties.$dayjs = dayjs;
 app.component("SvgIcon", SvgIcon);
-app.use(ElementPlus, { locale, size: "medium" });
+app.use(ElementPlus);
 // 自定义 el-table-column
 delete app._context.components.ElTableColumn;
 app.component("ElTableColumn", TableColumn);

@@ -4,40 +4,37 @@
 	</component>
 </template>
 
-<script>
+<script setup lang="ts">
+import { computed } from "vue";
+
 import { isExternal } from "@/utils/validate";
 
-export default {
-	props: {
-		to: {
-			type: String,
-			required: true
-		}
-	},
-	computed: {
-		isExternal() {
-			return isExternal(this.to);
-		},
-		type() {
-			if (this.isExternal) {
-				return "a";
-			}
-			return "router-link";
-		}
-	},
-	methods: {
-		linkProps(to) {
-			if (this.isExternal) {
-				return {
-					href: to,
-					target: "_blank",
-					rel: "noopener"
-				};
-			}
-			return {
-				to: to
-			};
-		}
+const props = defineProps({
+	to: {
+		type: String,
+		required: true
 	}
+});
+
+const isExternalRef = computed(() => isExternal(props.to));
+
+const type = computed(() => {
+	if (isExternalRef.value) {
+		return "a";
+	}
+	return "router-link";
+});
+
+const linkProps = to => {
+	if (isExternalRef.value) {
+		return {
+			href: to,
+			target: "_blank",
+			rel: "noopener"
+		};
+	}
+	return {
+		to: to
+	};
 };
 </script>

@@ -16,12 +16,15 @@
 						<el-dropdown-item v-if="isDev" @click="$router.push('/dev')">
 							<span>开发路由</span>
 						</el-dropdown-item>
-						<el-dropdown-item @click="logout">
+						<el-dropdown-item v-if="role !== 'student'">
+							<router-link to="/setup">个人设置</router-link>
+						</el-dropdown-item>
+						<el-dropdown-item>
+							<router-link to="/password">修改密码</router-link>
+						</el-dropdown-item>
+						<el-dropdown-item divided @click="logout">
 							<span style="display: block">退出</span>
 						</el-dropdown-item>
-						<!-- <el-dropdown-item divided>
-							<router-link to="/">Home</router-link>
-						</el-dropdown-item> -->
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>
@@ -29,54 +32,39 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+<script setup lang="ts">
+import store from "@/store";
 
 import Breadcrumb from "../Breadcrumb/index.vue";
 import Hamburger from "../Hamburger/index.vue";
 
-export default defineComponent({
-	name: "Navbar",
-	components: {
-		Breadcrumb,
-		Hamburger
-	},
-	data() {
-		return {
-			isDev: import.meta.env.DEV
-		};
-	},
-	computed: {
-		...mapGetters(["sidebar", "name", "avatar"])
-	},
-	methods: {
-		toggleSideBar() {
-			this.$store.dispatch("app/toggleSideBar");
-		},
-		async logout() {
-			await this.$store.dispatch("user/logout");
-			this.$router.push(`/login?redirect=${encodeURIComponent(this.$route.fullPath)}`);
-		}
-	}
-});
+const isDev = import.meta.env.DEV;
+
+const { sidebar, name, role } = store.getters;
+
+const toggleSideBar = () => {
+	store.dispatch("app/toggleSideBar");
+};
+const logout = async () => {
+	await store.dispatch("user/logout");
+};
 </script>
 
 <style lang="scss" scoped>
 .navbar {
 	position: relative;
-	overflow: hidden;
 	height: 56px;
+	overflow: hidden;
 	background: #fff;
 	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
 	.hamburger-container {
-		height: 100%;
-		cursor: pointer;
 		float: left;
+		height: 100%;
 		line-height: 56px;
-		-webkit-tap-highlight-color: transparent;
+		cursor: pointer;
 		transition: background 0.3s;
+		-webkit-tap-highlight-color: transparent;
 
 		// &:hover {
 		// 	background: rgba(0, 0, 0, 0.025);
@@ -88,9 +76,9 @@ export default defineComponent({
 	}
 
 	.right-menu {
+		float: right;
 		height: 100%;
 		margin-right: 15px;
-		float: right;
 		line-height: 56px;
 
 		&:focus {
@@ -123,10 +111,15 @@ export default defineComponent({
 				position: relative;
 
 				.nickname {
-					color: #666;
-					cursor: pointer;
+					width: 90px;
+					overflow: hidden;
 					// height: 40px;
 					font-size: 14px;
+					color: #666;
+					text-align: right;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					cursor: pointer;
 					// border-radius: 10px;
 				}
 
@@ -134,8 +127,8 @@ export default defineComponent({
 					position: absolute;
 					top: 23px;
 					right: -20px;
-					cursor: pointer;
 					font-size: 12px;
+					cursor: pointer;
 				}
 			}
 		}

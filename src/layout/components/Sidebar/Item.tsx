@@ -1,6 +1,5 @@
 import "./item.scss";
 
-import { toRefs } from "vue";
 export default {
 	name: "MenuItem",
 	props: {
@@ -14,22 +13,19 @@ export default {
 		}
 	},
 	setup(props: any) {
-		const { icon, title } = toRefs(props);
-		const iconData = icon.value;
-		const titleData = title.value;
 		return () => {
 			const vnodes = [];
 
-			if (iconData) {
-				if (iconData.includes("el-icon")) {
-					vnodes.push(<i class={[iconData, "sub-el-icon"]} />);
+			if (props.icon) {
+				if (props.icon.includes("el-icon")) {
+					vnodes.push(<i class={[props.icon, "sub-el-icon"]} />);
 				} else {
-					vnodes.push(<svg-icon icon-class={iconData} />);
+					vnodes.push(<svg-icon icon-class={props.icon} />);
 				}
 			}
 
-			if (titleData) {
-				vnodes.push(<span>{titleData}</span>);
+			if (props.title) {
+				vnodes.push(<span>{props.title}</span>);
 			}
 			return vnodes;
 		};
