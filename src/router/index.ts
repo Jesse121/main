@@ -2,15 +2,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 import Layout from "@/layout/index.vue";
 
-import devPagesRouter from "./modules/__dev_pages";
-import home from "./modules/home";
-
-/**
-  ConstantRoutes
-  a base page that does not have permission requirements
-  all roles can be accessed
-*/
-
 export const constantRoutes: RouteRecordRaw[] = [
 	{
 		path: "/redirect", //用于tagsView中刷新
@@ -45,8 +36,38 @@ export const constantRoutes: RouteRecordRaw[] = [
 		path: "/",
 		component: Layout,
 		redirect: "/home/index",
-		meta: { hidden: true }
+		meta: { title: "首页" },
+		children: [
+			{
+				path: "index",
+				name: "home",
+				component: () => import("@/views/home/index.vue"),
+				meta: { title: "首页", icon: "home", breadcrumb: false }
+			}
+		]
 	},
+	{
+		path: "/subapp-test", //测试子应用路由
+		component: Layout,
+		redirect: "noRedirect",
+		name: "subapp-test",
+		meta: { title: "qiankun子应用", icon: "copyright", isMicrApp: true },
+		children: [
+			{
+				path: "/subapp-test/index",
+				name: "subapp-test",
+				meta: { title: "首页", isMicrApp: true },
+				redirect: "/subapp-test/index/index"
+			},
+			{
+				path: "/subapp-test/about",
+				name: "subapp-test",
+				meta: { title: "关于我们", isMicrApp: true },
+				redirect: "/subapp-test/about/index"
+			}
+		]
+	},
+
 	{
 		path: "/:pathMatch(.*)*",
 		redirect: "/404",
@@ -54,25 +75,11 @@ export const constantRoutes: RouteRecordRaw[] = [
 	}
 ];
 
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes: Array<RouteRecordRaw> = [home];
-
-// 开发路由 - 仅本地开发环境可用
-let devRoutes: RouteRecordRaw[] = [];
-
-export let devPagesRoutes: RouteRecordRaw[] = [];
-
-if (process.env.NODE_ENV === "development") {
-	devPagesRoutes = [...asyncRoutes, devPagesRouter];
-	devRoutes = devRoutes.concat(devPagesRoutes);
-}
+export const asyncRoutes: Array<RouteRecordRaw> = [];
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes: [...constantRoutes, ...devRoutes]
+	routes: [...constantRoutes, ...asyncRoutes]
 });
 
 export default router;

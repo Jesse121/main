@@ -53,9 +53,11 @@ app.use(store);
 app.mount("#app");
 
 registerMicroApps(microApps, {
-	beforeLoad: app => {
-		console.log("before load app.name====>>>>>", app.name);
-	},
+	beforeLoad: [
+		app => {
+			console.log("before load app.name====>>>>>", app.name);
+		}
+	],
 	beforeMount: [
 		app => {
 			console.log("[LifeCycle] before mount %c%s", "color: green;", app.name);
