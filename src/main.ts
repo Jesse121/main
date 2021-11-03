@@ -1,4 +1,4 @@
-import "@/permission";
+// import "@/permission";
 import "@/styles/index.scss";
 import "normalize.css/normalize.css";
 
