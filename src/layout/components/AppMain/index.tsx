@@ -27,7 +27,12 @@ export default defineComponent({
 		}
 
 		return () => {
-			return <section class="app-main">{createRouterView(routerViewLength.value)}</section>;
+			return (
+				<section class="app-main">
+					{createRouterView(routerViewLength.value)}
+					<div id="subapp-viewport" style="min-height:90.6vh"></div>
+				</section>
+			);
 		};
 	}
 });

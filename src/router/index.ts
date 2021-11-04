@@ -35,7 +35,6 @@ export const constantRoutes: RouteRecordRaw[] = [
 	{
 		path: "/",
 		component: Layout,
-		redirect: "/home/index",
 		meta: { title: "首页" },
 		children: [
 			{
@@ -47,32 +46,32 @@ export const constantRoutes: RouteRecordRaw[] = [
 		]
 	},
 	{
-		path: "/subapp-test", //测试子应用路由
+		path: "/vue3-demo", //测试子应用路由
 		component: Layout,
 		redirect: "noRedirect",
-		name: "subapp-test",
-		meta: { title: "qiankun子应用", icon: "copyright", isMicrApp: true },
+		name: "vue3-demo",
+		meta: { title: "vue3子应用", icon: "home", isMicrApp: true },
 		children: [
 			{
-				path: "/subapp-test/index",
-				name: "subapp-test",
-				meta: { title: "首页", isMicrApp: true },
-				redirect: "/subapp-test/index/index"
+				path: "/subapp/vue3-demo/index",
+				name: "vue3-demo",
+				meta: { title: "页面1", isMicrApp: true },
+				redirect: "/subapp/vue3-demo/index"
 			},
 			{
-				path: "/subapp-test/about",
-				name: "subapp-test",
-				meta: { title: "关于我们", isMicrApp: true },
-				redirect: "/subapp-test/about/index"
+				path: "/subapp/vue3-demo/about",
+				name: "vue3-demo",
+				meta: { title: "关于", isMicrApp: true },
+				redirect: "/subapp/vue3-demo/about"
 			}
 		]
-	},
-
-	{
-		path: "/:pathMatch(.*)*",
-		redirect: "/404",
-		meta: { hidden: true }
 	}
+
+	// {
+	// 	path: "/:pathMatch(.*)*",
+	// 	redirect: "/404",
+	// 	meta: { hidden: true }
+	// }
 ];
 
 export const asyncRoutes: Array<RouteRecordRaw> = [];

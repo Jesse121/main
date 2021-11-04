@@ -16,6 +16,7 @@ export default defineConfig({
 		}
 	},
 	server: {
+		port: 3000,
 		proxy: {
 			"/api": {
 				target: "http://192.168.137.23:28081/renren-api/", // 开发
