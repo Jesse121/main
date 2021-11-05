@@ -34,6 +34,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 	},
 	{
 		path: "/",
+		redirect: "/index",
 		component: Layout,
 		meta: { title: "首页" },
 		children: [
@@ -53,14 +54,16 @@ export const constantRoutes: RouteRecordRaw[] = [
 		meta: { title: "vue3子应用", icon: "home", isMicrApp: true },
 		children: [
 			{
-				path: "/vue3-demo/",
-				name: "vue3-demo",
-				meta: { title: "页面1", isMicrApp: true }
+				path: "/vue3-demo/index",
+				name: "index",
+				meta: { title: "页面1", isMicrApp: true },
+				redirect: "/vue3-demo/index"
 			},
 			{
 				path: "/vue3-demo/about",
-				name: "vue3-demo",
-				meta: { title: "关于", isMicrApp: true }
+				name: "about",
+				meta: { title: "关于", isMicrApp: true },
+				redirect: "/vue3-demo/about"
 			}
 		]
 	}

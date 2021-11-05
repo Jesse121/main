@@ -1,8 +1,13 @@
 <template>
-	<div>123</div>
-	<router-view />
-	<!-- <el-config-provider :locale="locale"> -->
-	<!-- </el-config-provider> -->
+	<!-- <el-config-provider :locale="locale">
+		<router-view />
+	</el-config-provider> -->
+	<!-- 路由跳转 -->
+	<router-link to="/index">Home</router-link>
+	<!-- 子应用容器 -->
+	<div id="subapp-viewport" />
+	<!-- 子应用路由跳转 -->
+	<router-link to="/vue3-demo/index">vue3-demo/index</router-link>
 </template>
 
 <script setup lang="ts">
