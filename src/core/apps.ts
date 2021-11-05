@@ -1,7 +1,7 @@
 const apps = [
 	{
 		name: "vue3-demo",
-		entry: "http://localhost:3001/subapp/vue3-demo/",
+		entry: "//localhost:3001/",
 		activeRule: "/vue3-demo",
 		container: "#subapp-viewport", // 子应用挂载的div
 		props: {

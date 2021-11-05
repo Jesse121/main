@@ -12,7 +12,6 @@ import TableColumn from "@/components/TableColumn/index.vue";
 import App from "./App.vue";
 import SvgIcon from "./components/SvgIcon/index.vue";
 import start from "./core";
-import microApps from "./micro-app";
 import router from "./router";
 import store, { IState } from "./store";
 
