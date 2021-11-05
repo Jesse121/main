@@ -3,10 +3,10 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "dev",
+			"script": "serve",
 			"problemMatcher": [],
-			"label": "npm: dev",
-			"detail": "vite",
+			"label": "npm: serve",
+			"detail": "vue-cli-service serve",
 			"group": {
 				"kind": "build",
 				"isDefault": true

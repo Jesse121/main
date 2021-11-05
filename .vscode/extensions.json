@@ -1,9 +1,0 @@
-{
-	"recommendations": [
-		"shenjiaolong.vue-helper",
-		"octref.vetur",
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
-		"stylelint.vscode-stylelint"
-	]
-}

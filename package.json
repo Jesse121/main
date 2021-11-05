@@ -1,97 +1,60 @@
 {
-	"name": "gtlm.demo.op",
-	"version": "0.0.0",
+	"name": "main",
+	"version": "0.1.0",
+	"private": true,
 	"scripts": {
-		"dev": "vite",
-		"build": "vue-tsc --noEmit && vite build",
-		"serve": "vite preview",
-		"api": "yapi-to-request-code",
-		"ls-lint": "ls-lint",
-		"eslint": "eslint src --fix --ext .vue,.ts,.tsx",
-		"stylelint": "stylelint \"src/**/*.{vue,css,scss}\" --quiet --fix",
-		"lint": "npm run ls-lint && npm run eslint && npm run stylelint",
-		"publish:dev": "sftp-publish-tool -c dist -e dev",
-		"publish:test": "sftp-publish-tool -c dist -e test"
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
 	},
 	"prettier": "@gtlmjs/prettier-config",
-	"peerDependencies": {
-		"dayjs": "1.10.5",
-		"lodash": "4.17.21"
-	},
 	"dependencies": {
-		"element-plus": "^1.1.0-beta.24",
-		"file-saver": "^2.0.5",
+		"core-js": "^3.6.5",
+		"element-plus": "^1.2.0-beta.1",
 		"normalize.css": "^8.0.1",
 		"nprogress": "^0.2.0",
-		"path-browserify": "^1.0.1",
-		"path-to-regexp": "^6.2.0",
 		"qiankun": "^2.5.1",
-		"qs": "^6.10.1",
-		"vue": "^3.2.20",
-		"vue-router": "^4.0.12",
-		"vuex": "^4.0.2"
+		"vue": "3.2.20",
+		"vue-router": "4.0.12",
+		"vuex": "4.0.2"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^13.1.0",
-		"@commitlint/config-conventional": "^13.1.0",
 		"@gtlmjs/prettier-config": "^1.0.0",
-		"@gtlmjs/yapi-to-request-code": "^1.0.6",
-		"@ls-lint/ls-lint": "^1.10.0",
-		"@types/file-saver": "^2.0.3",
-		"@types/node": "^16.4.10",
-		"@types/nprogress": "^0.2.0",
-		"@types/qs": "^6.9.7",
-		"@typescript-eslint/eslint-plugin": "^4.29.0",
-		"@typescript-eslint/parser": "^4.29.0",
-		"@vitejs/plugin-vue": "^1.2.5",
-		"@vitejs/plugin-vue-jsx": "^1.1.7",
-		"@vue/compiler-sfc": "^3.2.20",
-		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-prettier": "^3.4.0",
+		"@typescript-eslint/eslint-plugin": "^4.18.0",
+		"@typescript-eslint/parser": "^4.18.0",
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "~4.5.0",
+		"@vue/cli-plugin-typescript": "~4.5.0",
+		"@vue/cli-plugin-vuex": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/compiler-sfc": "^3.0.0",
+		"@vue/eslint-config-prettier": "^6.0.0",
+		"@vue/eslint-config-typescript": "^7.0.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
-		"eslint-plugin-vue": "^7.15.1",
-		"husky": "^7.0.1",
-		"lint-staged": "^11.1.1",
-		"prettier": "^2.3.2",
-		"sass": "^1.37.4",
-		"sftp-publish-tool": "^1.0.0",
-		"stylelint": "^13.13.1",
-		"stylelint-config-prettier": "^8.0.2",
-		"stylelint-config-recess-order": "^2.4.0",
+		"eslint-plugin-vue": "^7.0.0",
+		"lint-staged": "^9.5.0",
+		"node-sass": "^4.12.0",
+		"prettier": "^2.4.1",
+		"sass-loader": "^8.0.2",
+		"stylelint": "^14.0.1",
+		"stylelint-config-prettier": "^9.0.3",
+		"stylelint-config-recess-order": "^2.5.0",
 		"stylelint-prettier": "^1.2.0",
-		"typescript": "^4.4.4",
-		"vite": "^2.6.12",
-		"vue-tsc": "^0.0.24"
+		"typescript": "~4.1.5"
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead"
-	],
 	"engines": {
 		"node": "14.15.1"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-		}
+	"gitHooks": {
+		"pre-commit": "lint-staged"
 	},
 	"lint-staged": {
-		"*.{vue,ts,js,scss}": [
-			"prettier --write",
-			"git add"
+		"*.{js,jsx,vue,ts,tsx}": [
+			"vue-cli-service lint",
+			"git add"
 		]
-	},
-	"keywords": [
-		"vue3",
-		"vite",
-		"element-plus"
-	],
-	"license": "ISC",
-	"repository": {
-		"type": "git",
-		"url": "git@git.rongsitech.com:yangdong/gtlm.demo.op.git"
 	}
 }
