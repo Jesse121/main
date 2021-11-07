@@ -5,51 +5,40 @@
 	</svg>
 </template>
 
-<script>
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 
 import { isExternal } from "@/utils/validate";
 
-export default defineComponent({
-	name: "SvgIcon",
-	props: {
-		iconClass: {
-			type: String,
-			required: true
-		},
-		className: {
-			type: String,
-			default: ""
-		}
+const props = defineProps({
+	iconClass: {
+		type: String,
+		required: true
 	},
-	setup(props) {
-		const external = computed(() => {
-			return isExternal(props.iconClass);
-		});
-
-		const iconName = computed(() => `#icon-${props.iconClass}`);
-
-		const svgClass = computed(() => {
-			if (props.className) {
-				return "svg-icon " + props.className;
-			} else {
-				return "svg-icon";
-			}
-		});
-		const styleExternalIcon = computed(() => {
-			return {
-				mask: `url(${props.iconClass}) no-repeat 50% 50%`,
-				"-webkit-mask": `url(${props.iconClass}) no-repeat 50% 50%`
-			};
-		});
-
-		return {
-			external,
-			iconName,
-			svgClass,
-			styleExternalIcon
-		};
+	className: {
+		type: String,
+		default: ""
 	}
+});
+
+const external = computed(() => {
+	return isExternal(props.iconClass);
+});
+
+const iconName = computed(() => `#icon-${props.iconClass}`);
+
+const svgClass = computed(() => {
+	if (props.className) {
+		return "svg-icon " + props.className;
+	} else {
+		return "svg-icon";
+	}
+});
+const styleExternalIcon = computed(() => {
+	return {
+		mask: `url(${props.iconClass}) no-repeat 50% 50%`,
+		"-webkit-mask": `url(${props.iconClass}) no-repeat 50% 50%`
+	};
 });
 </script>
 

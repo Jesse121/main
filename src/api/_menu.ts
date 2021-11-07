@@ -4,53 +4,52 @@
 import request from "@/utils/request";
 
 interface BaseRes<T = any> {
-  msg: string;
-  result: T;
-  info: string;
-  status: boolean;
-  [k: string]: any;
+	msg: string;
+	result: T;
+	info: string;
+	status: boolean;
+	[k: string]: any;
 }
 
-
 export type MenuNavData = {
-  /**
-   * 子节点
-   */
-  children: {
-    children: string[];
-    menuId: number;
-    parentId: number;
-    desc: string;
-    path: string;
-    type: number;
-    orderNum: number;
-    [k: string]: any;
-  }[];
-  /**
-   * 菜单id
-   */
-  menuId: number;
-  /**
-   * 父id
-   */
-  parentId: number;
-  /**
-   * 菜单描述
-   */
-  desc: string;
-  /**
-   * 菜单路由
-   */
-  path: string;
-  /**
-   * 菜单类型
-   */
-  type: number;
-  /**
-   * 排序
-   */
-  orderNum: number;
-  [k: string]: any;
+	/**
+	 * 子节点
+	 */
+	children: {
+		children: string[];
+		menuId: number;
+		parentId: number;
+		desc: string;
+		path: string;
+		type: number;
+		orderNum: number;
+		[k: string]: any;
+	}[];
+	/**
+	 * 菜单id
+	 */
+	menuId: number;
+	/**
+	 * 父id
+	 */
+	parentId: number;
+	/**
+	 * 菜单描述
+	 */
+	desc: string;
+	/**
+	 * 菜单路由
+	 */
+	path: string;
+	/**
+	 * 菜单类型
+	 */
+	type: number;
+	/**
+	 * 排序
+	 */
+	orderNum: number;
+	[k: string]: any;
 }[];
 
 /**
@@ -73,9 +72,11 @@ export type MenuNavData = {
  *
  */
 export function getMenuNav(config?: Record<string, any>): Promise<BaseRes<MenuNavData>> {
-	
 	return request({
-		url: import.meta.env.VITE_APP_MOCK === 'true' ? `http://192.168.137.35:3000/mock/224/api/web/menu/nav` : `/api/web/menu/nav`,
+		url:
+			process.env.VUE_APP_MOCK === "true"
+				? `http://192.168.137.35:3000/mock/224/api/web/menu/nav`
+				: `/api/web/menu/nav`,
 		method: "get",
 		...config
 	}) as any;

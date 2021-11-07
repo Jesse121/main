@@ -38,7 +38,7 @@ import store from "@/store";
 import Breadcrumb from "../Breadcrumb/index.vue";
 import Hamburger from "../Hamburger/index.vue";
 
-const isDev = import.meta.env.DEV;
+// const isDev = process.env.development;
 
 const { sidebar, name, role } = store.getters;
 
