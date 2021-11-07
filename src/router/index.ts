@@ -57,22 +57,22 @@ export const constantRoutes: RouteRecordRaw[] = [
 				path: "/vue3-demo/index",
 				name: "index",
 				meta: { title: "页面1", isMicrApp: true },
-				redirect: "/vue3-demo/index"
+				component: () => import("@/views/home/index.vue")
 			},
 			{
 				path: "/vue3-demo/about",
 				name: "about",
 				meta: { title: "关于", isMicrApp: true },
-				redirect: "/vue3-demo/about"
+				component: () => import("@/views/home/index.vue")
 			}
 		]
-	}
+	},
 
-	// {
-	// 	path: "/:pathMatch(.*)*",
-	// 	redirect: "/404",
-	// 	meta: { hidden: true }
-	// }
+	{
+		path: "/:pathMatch(.*)*",
+		redirect: "/404",
+		meta: { hidden: true }
+	}
 ];
 
 export const asyncRoutes: Array<RouteRecordRaw> = [];
