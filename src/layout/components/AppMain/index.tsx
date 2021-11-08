@@ -28,17 +28,14 @@ export default defineComponent({
 		}
 
 		onMounted(() => {
-			start({ prefetch: "all", sandbox: { strictStyleIsolation: true } });
+			start({ prefetch: true, sandbox: { strictStyleIsolation: true } });
 		});
 
 		return () => {
 			return (
 				<section class="app-main">
-					{router.currentRoute.value.meta.isMicrApp ? (
-						<div id="subapp-viewport" style="min-height:90.6vh"></div>
-					) : (
-						createRouterView(routerViewLength.value)
-					)}
+					<div v-show={!router.currentRoute.value.meta.isMicrApp}>{createRouterView(routerViewLength.value)}</div>
+					<div id="subapp-viewport" style="min-height:90.6vh" v-show={router.currentRoute.value.meta.isMicrApp}></div>
 				</section>
 			);
 		};
