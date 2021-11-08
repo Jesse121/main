@@ -55,13 +55,34 @@ export const constantRoutes: RouteRecordRaw[] = [
 		children: [
 			{
 				path: "/vue3-demo/index",
-				name: "index",
-				meta: { title: "页面1", isMicrApp: true },
+				name: "vue3_index",
+				meta: { title: "主页", isMicrApp: true },
 				component: () => import("@/views/home/index.vue")
 			},
 			{
 				path: "/vue3-demo/about",
-				name: "about",
+				name: "vue3_about",
+				meta: { title: "关于", isMicrApp: true },
+				component: () => import("@/views/home/index.vue")
+			}
+		]
+	},
+	{
+		path: "/vue2-demo", //测试子应用路由
+		component: Layout,
+		redirect: "noRedirect",
+		name: "vue2-demo",
+		meta: { title: "vue2子应用", icon: "home", isMicrApp: true },
+		children: [
+			{
+				path: "/vue2-demo/index",
+				name: "vue2_index",
+				meta: { title: "主页", isMicrApp: true },
+				component: () => import("@/views/home/index.vue")
+			},
+			{
+				path: "/vue2-demo/about",
+				name: "vue2_about",
 				meta: { title: "关于", isMicrApp: true },
 				component: () => import("@/views/home/index.vue")
 			}

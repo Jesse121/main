@@ -1,7 +1,8 @@
 import "./index.scss";
 
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import start from "@/core";
 
 export default defineComponent({
 	name: "AppMain",
@@ -25,6 +26,10 @@ export default defineComponent({
 				/>
 			);
 		}
+
+		onMounted(() => {
+			start({ prefetch: "all", sandbox: { strictStyleIsolation: true } });
+		});
 
 		return () => {
 			return (
