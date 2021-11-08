@@ -16,6 +16,15 @@ const apps = [
 		props: {
 			routerBase: "/vue2-demo" // 下发路由给子应用，子应用根据该值去定义qiankun环境下的路由
 		}
+	},
+	{
+		name: "react-demo",
+		entry: "//localhost:3003/",
+		activeRule: "/react-demo",
+		container: "#subapp-viewport", // 子应用挂载的div
+		props: {
+			routerBase: "/react-demo" // 下发路由给子应用，子应用根据该值去定义qiankun环境下的路由
+		}
 	}
 ];
 

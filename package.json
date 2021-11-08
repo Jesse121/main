@@ -1,10 +1,10 @@
 {
 	"name": "gtlm.demo.op",
 	"version": "0.0.0",
+	"devPort": "3000",
 	"scripts": {
-		"dev": "vite",
 		"build": "vue-tsc --noEmit && vite build",
-		"serve": "vite preview",
+		"serve": "vite",
 		"api": "yapi-to-request-code",
 		"ls-lint": "ls-lint",
 		"eslint": "eslint src --fix --ext .vue,.ts,.tsx",

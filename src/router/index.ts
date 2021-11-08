@@ -34,12 +34,12 @@ export const constantRoutes: RouteRecordRaw[] = [
 	},
 	{
 		path: "/",
-		redirect: "/index",
+		redirect: "/home",
 		component: Layout,
 		meta: { title: "首页" },
 		children: [
 			{
-				path: "index",
+				path: "home",
 				name: "home",
 				component: () => import("@/views/home/index.vue"),
 				meta: { title: "首页", icon: "home", breadcrumb: false }
@@ -84,6 +84,21 @@ export const constantRoutes: RouteRecordRaw[] = [
 				path: "/vue2-demo/about",
 				name: "vue2_about",
 				meta: { title: "关于", isMicrApp: true },
+				component: () => import("@/views/home/index.vue")
+			}
+		]
+	},
+	{
+		path: "/react-demo", //测试子应用路由
+		component: Layout,
+		redirect: "noRedirect",
+		name: "react-demo",
+		meta: { isMicrApp: true },
+		children: [
+			{
+				path: "/react-demo",
+				name: "react_index",
+				meta: { title: "react子应用", icon: "home", isMicrApp: true },
 				component: () => import("@/views/home/index.vue")
 			}
 		]
