@@ -1,13 +1,18 @@
-<script>
+<scriptc lang="ts">
+import { h } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
 export default {
 	setup() {
-		const { params, query } = this.$route;
+		const route = useRoute();
+		const router = useRouter();
+		const { params, query } = route;
 		const { path } = params;
-		this.$router.replace({ path: "/" + path, query });
+		router.replace({ path: "/" + path, query });
 
-		return h => {
-			return h(); // avoid warning message
+		return () => {
+			return h();
 		};
 	}
 };
-</script>
+</scriptc>

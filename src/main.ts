@@ -42,8 +42,6 @@ declare module "vue-router" {
 
 const app = createApp(App);
 
-start();
-
 app.config.globalProperties.$dayjs = dayjs;
 app.component("SvgIcon", SvgIcon);
 app.use(ElementPlus);
@@ -53,3 +51,5 @@ app.component("ElTableColumn", TableColumn);
 app.use(router);
 app.use(store);
 app.mount("#app");
+
+start({ prefetch: true, sandbox: { strictStyleIsolation: true } });
