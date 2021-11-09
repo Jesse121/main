@@ -118,4 +118,13 @@ const router = createRouter({
 	routes: [...constantRoutes, ...asyncRoutes]
 });
 
+// 解决子应用跳转主应用时路由版本不一致导致history.state数据接口不一致问题
+// https://github.com/umijs/qiankun/issues/1361
+router.beforeEach((to, from, next) => {
+	if (!history.state.current) {
+		Object.assign(history.state, { current: from.fullPath });
+	}
+	next();
+});
+
 export default router;
