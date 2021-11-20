@@ -2,6 +2,7 @@ import "./index.scss";
 
 import { computed, defineComponent, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
 import start from "@/core";
 
 export default defineComponent({

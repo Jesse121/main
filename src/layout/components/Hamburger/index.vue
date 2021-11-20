@@ -1,5 +1,6 @@
 <template>
-	<div style="padding: 0 10px 0 25px" @click="toggleClick">
+	<div style="padding: 0 10px 0 25px" @click="toggleClick"
+>
 		<svg
 			:class="{ 'is-active': isActive }"
 			class="hamburger"
