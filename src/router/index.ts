@@ -34,12 +34,12 @@ export const constantRoutes: RouteRecordRaw[] = [
 	},
 	{
 		path: "/",
-		redirect: "/index",
+		redirect: "/home",
 		component: Layout,
 		meta: { title: "首页" },
 		children: [
 			{
-				path: "index",
+				path: "home",
 				name: "home",
 				component: () => import("@/views/home/index.vue"),
 				meta: { title: "首页", icon: "home", breadcrumb: false }

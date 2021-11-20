@@ -37,46 +37,6 @@ const getBreadcrumb = () => {
 	levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false);
 };
 getBreadcrumb();
-
-// export default {
-// 	data() {
-// 		return {
-// 			levelList: null
-// 		};
-// 	},
-// 	watch: {
-// 		$route() {
-// 			this.getBreadcrumb();
-// 		}
-// 	},
-// 	created() {
-// 		this.getBreadcrumb();
-// 	},
-// 	methods: {
-// 		isDashboard(route) {
-// 			const name = route && route.name;
-// 			if (!name) {
-// 				return false;
-// 			}
-// 			return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
-// 		},
-// 		pathCompile(path) {
-// 			// To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
-// 			const { params } = this.$route;
-// 			const toPath = compile(path);
-// 			return toPath(params);
-// 		},
-// 		handleLink(item) {
-// 			const { redirect, path } = item;
-// 			if (redirect) {
-// 				this.$router.push(redirect);
-// 				return;
-// 			}
-// 			this.$router.push(path);
-// 			// this.$router.push(this.pathCompile(path));
-// 		}
-// 	}
-// };
 </script>
 
 <style lang="scss" scoped>
