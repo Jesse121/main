@@ -1,7 +1,8 @@
 import "./index.scss";
 
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import start from "@/core";
 
 export default defineComponent({
 	name: "AppMain",
@@ -26,11 +27,15 @@ export default defineComponent({
 			);
 		}
 
+		onMounted(() => {
+			start({ prefetch: true, sandbox: { strictStyleIsolation: true } });
+		});
+
 		return () => {
 			return (
 				<section class="app-main">
-					{/* {createRouterView(routerViewLength.value)} */}
-					<div id="subapp-viewport" style="min-height:90.6vh"></div>
+					<div v-show={!router.currentRoute.value.meta.isMicrApp}>{createRouterView(routerViewLength.value)}</div>
+					<div id="subapp-viewport" style="min-height:90.6vh" v-show={router.currentRoute.value.meta.isMicrApp}></div>
 				</section>
 			);
 		};
