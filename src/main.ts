@@ -11,6 +11,10 @@ import SvgIcon from "./components/SvgIcon/index.vue";
 import router from "./router";
 import store from "./store";
 
+const req = require.context("@/assets/icons", false, /\.svg$/);
+const requireAll = (requireContext: any) => requireContext.keys().map(requireContext);
+requireAll(req);
+
 const app = createApp(App);
 
 app.component("SvgIcon", SvgIcon);

@@ -1,14 +1,11 @@
 <template>
 	<div class="navbar">
-		<hamburger :is-active="sidebar.opened" class="hamburger-container"
-@toggleClick="toggleSideBar"
-/>
+		<hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
 		<breadcrumb class="breadcrumb-container" />
 
 		<div class="right-menu">
-			<el-dropdown class="avatar-container" trigger="click"
->
+			<el-dropdown class="avatar-container" trigger="click">
 				<div class="avatar-wrapper">
 					<!-- <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" /> -->
 					<div class="nickname">
@@ -27,10 +24,7 @@
 						<el-dropdown-item>
 							<router-link to="/password">修改密码</router-link>
 						</el-dropdown-item> -->
-						<el-dropdown-item 
-						divided 
-						@click="logout"
->
+						<el-dropdown-item divided @click="logout">
 							<span style="display: block">退出</span>
 						</el-dropdown-item>
 					</el-dropdown-menu>

@@ -44,24 +44,21 @@
 					tabindex="2"
 					@keyup.enter="handleLogin"
 				/>
-				<span class="show-pwd" @click="showPwd"
->
+				<span class="show-pwd" @click="showPwd">
 					<svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
 				</span>
 			</el-form-item>
 
 			<el-button
 				:loading="loading"
-        style="width: 100%; margin-bottom: 30px"
+				style="width: 100%; margin-bottom: 30px"
 				type="primary"
 				@click.prevent="handleLogin"
-      >
+			>
 				登录
 			</el-button>
 		</el-form>
-		<a href="https://beian.miit.gov.cn/" target="_blank"
-class="beian"
->备案号：赣ICP备17005701号-8</a>
+		<a href="https://beian.miit.gov.cn/" target="_blank" class="beian">备案号：赣ICP备17005701号-8</a>
 	</div>
 </template>
 

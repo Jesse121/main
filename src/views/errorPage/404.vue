@@ -1,8 +1,6 @@
 <template>
 	<div class="error-page-content">
-		<img class="img-404" src="@/assets/404.png"
-alt="404"
-/>
+		<img class="img-404" src="@/assets/404.png" alt="404" />
 		<div>
 			<p class="bullshit__info">请检查访问链接是否正确，或者点击回首页按钮</p>
 			<el-button type="primary" @click="goback"> 回首页 </el-button>
